@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://hwi5gw0b20dr"]
+
+[ext_resource type="Texture2D" uid="uid://bktqye6jgou4y" path="res://assets/Samurai/Idle.png" id="1_kywip"]
+[ext_resource type="Script" path="res://scripts/samurai.gd" id="1_u8m5m"]
+[ext_resource type="Texture2D" uid="uid://b03kyjtwx1tfe" path="res://assets/redArrow.png" id="3_qkbwl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_273xy"]
+atlas = ExtResource("1_kywip")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5xwb"]
+atlas = ExtResource("1_kywip")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pef03"]
+atlas = ExtResource("1_kywip")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtt3b"]
+atlas = ExtResource("1_kywip")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42827"]
+atlas = ExtResource("1_kywip")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir8pn"]
+atlas = ExtResource("1_kywip")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pg4x5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_273xy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5xwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pef03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtt3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42827")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir8pn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 11.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_icf34"]
+height = 72.0
+
+[node name="samurai" type="CharacterBody2D"]
+script = ExtResource("1_u8m5m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pg4x5")
+animation = &"idle"
+autoplay = "idle"
+frame = 3
+frame_progress = 0.496826
+offset = Vector2(-3, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 12)
+shape = SubResource("CapsuleShape2D_icf34")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="left" type="TouchScreenButton" parent="Camera2D"]
+position = Vector2(250, 185)
+rotation = -1.5708
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("3_qkbwl")
+action = "left"
+
+[node name="right" type="TouchScreenButton" parent="Camera2D"]
+position = Vector2(360, 140)
+rotation = 1.5708
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("3_qkbwl")
+action = "right"
+
+[node name="jump" type="TouchScreenButton" parent="Camera2D"]
+position = Vector2(-360, 140)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("3_qkbwl")
+action = "jump"
